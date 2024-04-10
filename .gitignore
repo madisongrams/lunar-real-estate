@@ -69,6 +69,11 @@ celerybeat-schedule.dir
 celerybeat-schedule.db
 *.pid
 
+# venv
+pyvenv.cfg
+.venv
+pip-selfcheck.json
+
 # Redis
 *.rdb
 
