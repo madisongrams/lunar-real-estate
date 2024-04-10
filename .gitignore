@@ -73,6 +73,7 @@ celerybeat-schedule.db
 pyvenv.cfg
 .venv
 pip-selfcheck.json
+bin/
 
 # Redis
 *.rdb
