@@ -69,6 +69,9 @@ celerybeat-schedule.dir
 celerybeat-schedule.db
 *.pid
 
+# Redis
+*.rdb
+
 # Flask stuff:
 instance/
 .webassets-cache
