@@ -42,7 +42,13 @@ $ cd lunar/health_apis
 $ pip install -r requirements.txt
 ```
 
-Once `pip` has finished downloading the dependencies, you can move on to running the application.
+Once `pip` has finished downloading the dependencies, you can apply migrations for the first time.
+
+```sh
+$ python manage.py migrate
+```
+
+Now you can run the application!
 
 ## Running the application
 To start the server:
