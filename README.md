@@ -81,6 +81,10 @@ $ curl http://127.0.0.1:8000/stats/
 $ curl http://127.0.0.1:8000/health/
 ```
 
+> [!NOTE]
+> The task that populates data for the health endpoint only runs once a minute, so give the celery tasks a minute to run before testing the health endpoint. The endpoint will give a 204 response with no data if there are no values yet.
+
+
 ## Testing
 
 In the `lunar/health_apis/` directory, run:
