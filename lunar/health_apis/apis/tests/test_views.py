@@ -1,11 +1,11 @@
 from rest_framework import status
 from rest_framework.test import APITestCase
-import json
-from zoneinfo import ZoneInfo
 from ..models import AltitudeModel, HealthMessage, HealthModel
+from ..conftest import NewDate
 
+import json
+import apis.views
 import datetime
-
 
 class EmptyStatsTestCase(APITestCase):
     def test_empty_stats(self):
@@ -17,20 +17,12 @@ class EmptyStatsTestCase(APITestCase):
         self.assertDictEqual(json.loads(response.content), {
                              "minimum": None, "maximum": None, "average": None})
 
-
-class NewDate(datetime.datetime):
-    @classmethod
-    def now(cls, tz):
-        return cls(2024, 4, 6, 1, 20, tzinfo=ZoneInfo("UTC"))
-
-
-datetime.datetime = NewDate
-
+apis.views.datetime = NewDate
 
 class SingleStatsTestCase(APITestCase):
     def setUp(self):
         AltitudeModel.objects.create(altitude=150, date=NewDate(
-            2024, 4, 6, 1, 22, tzinfo=ZoneInfo("UTC")))
+            2024, 4, 6, 1, 22, tzinfo=datetime.timezone.utc))
 
     def test_empty_stats(self):
         """
@@ -45,17 +37,17 @@ class SingleStatsTestCase(APITestCase):
 class MixedStatsTestCase(APITestCase):
     def setUp(self):
         AltitudeModel.objects.create(altitude=150, date=NewDate(
-            2024, 4, 6, 1, 22, tzinfo=ZoneInfo("UTC")))
+            2024, 4, 6, 1, 22, tzinfo=datetime.timezone.utc))
         AltitudeModel.objects.create(altitude=200, date=NewDate(
-            2024, 4, 6, 1, 23, tzinfo=ZoneInfo("UTC")))
+            2024, 4, 6, 1, 23, tzinfo=datetime.timezone.utc))
         AltitudeModel.objects.create(altitude=100, date=NewDate(
-            2024, 4, 6, 1, 21, tzinfo=ZoneInfo("UTC")))
+            2024, 4, 6, 1, 21, tzinfo=datetime.timezone.utc))
         AltitudeModel.objects.create(altitude=125, date=NewDate(
-            2024, 4, 6, 1, 22, tzinfo=ZoneInfo("UTC")))
+            2024, 4, 6, 1, 22, tzinfo=datetime.timezone.utc))
         AltitudeModel.objects.create(altitude=90, date=NewDate(
-            2024, 4, 6, 0, 34, tzinfo=ZoneInfo("UTC")))
+            2024, 4, 6, 0, 34, tzinfo=datetime.timezone.utc))
         AltitudeModel.objects.create(altitude=260, date=NewDate(
-            2024, 4, 6, 0, 20, tzinfo=ZoneInfo("UTC")))
+            2024, 4, 6, 0, 20, tzinfo=datetime.timezone.utc))
 
     def test_empty_stats(self):
         """

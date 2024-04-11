@@ -13,8 +13,12 @@ django-health-check==3.18.1
 django-rest-framework==0.1.0
 djangorestframework==3.15.1
 idna==3.6
+iniconfig==2.0.0
 kombu==5.3.6
+packaging==24.0
+pluggy==1.4.0
 prompt-toolkit==3.0.43
+pytest==8.1.1
 python-dateutil==2.9.0.post0
 redis==5.0.3
 requests==2.31.0
