@@ -82,3 +82,9 @@ $ curl http://127.0.0.1:8000/health/
 ```
 
 ## Testing
+
+In the `lunar/health_apis/` directory, run:
+
+```sh
+$ python manage.py test
+```
